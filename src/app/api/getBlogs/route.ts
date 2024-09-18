@@ -4,13 +4,13 @@ import BlogPost from "../../../../utils/models/posts";
 
 connect()
 
-export async function GET(req:NextRequest){
+export async function GET(req:NextRequest, res:NextResponse){
 try {
     const blogPosts = await BlogPost.find()
     return NextResponse.json(blogPosts, { status: 200 });
     console.log(blogPosts)
 }
  catch (error) {
-    console.log(error)
+    return NextResponse.json(error)
 }
 }
