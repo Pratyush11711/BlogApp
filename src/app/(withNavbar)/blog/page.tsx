@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "../../../components/ui/3d-card";
+import axios from "axios";
 
 export default async function Blog() {
     // Function to slice text with proper word separation
@@ -13,24 +14,29 @@ export default async function Blog() {
         return text;
     };
 
-    // Fetch blogs data from the API
+    // Fetch blogs data from the API using axios
     let blogs = [];
     let errorMessage = "";
 
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getBlogs`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            cache: "no-store",
-        });
+        // const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/getblogs`);
+        // blogs = response.data;
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getblogs`);
 
         if (!response.ok) {
-            throw new Error("Failed to fetch blogs");
+            console.log("There is an error fetching data", response.status);
+            return;
         }
-
-        blogs = await response.json();
+        console.log('API URL:', process.env.NEXT_PUBLIC_API_URL);
+        
+        const data = await response.json();
+        
+        if (!data) {
+            console.log("No data available");
+        } else {
+            console.log("Fetched data:", data);
+        }
+        
     } catch (error) {
         console.error("Error fetching blogs:", error);
         errorMessage = "Failed to load blogs. Please try again later.";
