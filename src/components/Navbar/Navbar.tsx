@@ -50,7 +50,7 @@ function Navbar({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
+      className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 h-[100px] ", className)}
     >
       {/* Desktop Menu */}
       <div className="hidden md:block">
@@ -94,6 +94,8 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/blog">Blog</HoveredLink>
             <HoveredLink href="/createBlog">Create Blog</HoveredLink>
             <HoveredLink href="/about">About</HoveredLink>
+            <HoveredLink href="/contact">Contact</HoveredLink>
+
             <button
               className="px-4 py-2 rounded-full border border-neutral-300 bg-neutral-100 text-neutral-500 text-sm hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
               onClick={handleClick}
