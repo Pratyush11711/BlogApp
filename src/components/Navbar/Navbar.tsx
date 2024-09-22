@@ -50,7 +50,7 @@ function Navbar({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 h-[100px] ", className)}
+      className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 h-[100px]  ", className)}
     >
       {/* Desktop Menu */}
       <div className="hidden md:block">
@@ -89,7 +89,7 @@ function Navbar({ className }: { className?: string }) {
 
         {/* Mobile Menu Items */}
         {nav && ( // Render menu items only when `nav` is true
-          <div className="flex flex-col space-y-4 text-md w-full bg-[#18191B] p-4 rounded-md mt-3">
+          <div className="flex flex-col space-y-4 text-md w-full bg-[#18191B] p-4 rounded-md mt-3 items-center justify-center  ">
             <HoveredLink href="/">Home</HoveredLink>
             <HoveredLink href="/blog">Blog</HoveredLink>
             <HoveredLink href="/createBlog">Create Blog</HoveredLink>
@@ -97,7 +97,7 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/contact">Contact</HoveredLink>
 
             <button
-              className="px-4 py-2 rounded-full border border-neutral-300 bg-neutral-100 text-neutral-500 text-sm hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
+              className="px-4 py-2 rounded-full border border-neutral-300 bg-neutral-100 text-neutral-500  text-sm hover:-translate-y-1 transform transition duration-200 hover:shadow-md"
               onClick={handleClick}
             >
               Logout
