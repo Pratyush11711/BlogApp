@@ -21,7 +21,7 @@ export default function VortexDemo() {
         className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
       >
         
-        <h2 className="relative z-10 text-4xl md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
+        <h2 className="relative z-10 text-6xl md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold mt-[120px] md:mt-[250px]">
           Contact Us
         </h2>
         <form action=""  onSubmit={handleSubmit} className="w-1/2 p-4 flex flex-col gap-y-4">
