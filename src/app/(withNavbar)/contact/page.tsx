@@ -68,7 +68,7 @@ export default function VortexDemo() {
   
     //   </Vortex>
     // </div>
-    <div className="max-w-full mx-auto rounded-md  h-[100vh] overflow-hidden">
+    <div className="max-w-full  rounded-md  h-[100vh] overflow-hidden">
     <Vortex
       backgroundColor="black"
       className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
@@ -101,7 +101,7 @@ export default function VortexDemo() {
          <Label htmlFor="message" className='text-white'>Message</Label>
          </div>
          <textarea
-           className="textarea textarea-bordered h-24 w-full rounded-md p-2 mt-2  placeholder-white placeholder-text-black"
+           className="textarea textarea-bordered h-24 w-full rounded-md p-2 mt-2  "
            placeholder="Enter your message" id="message" name="message"
          ></textarea>
                <ValidationError 
