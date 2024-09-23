@@ -1,10 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
 import { CardBody, CardContainer, CardItem } from "../../../components/ui/3d-card";
-import axios from "axios";
+
+// Async function to fetch blogs from API (runs on the server-side in App Router)
+async function getBlogs() {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getblogs`, {
+        cache: 'no-store' // Ensures fresh data on every request
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch blogs: ${response.statusText}`);
+    }
+
+    const blogs = await response.json();
+    return blogs;
+}
 
 export default async function Blog() {
+    let blogs = [];
+    try {
+        blogs = await getBlogs(); // Fetch blogs data on the server-side
+    } catch (error) {
+        console.error("Error fetching blogs:", error);
+    }
+
     // Function to slice text with proper word separation
     const sliceText = (text: string, wordLimit: number) => {
         const words = text.split(" ");
@@ -14,39 +33,10 @@ export default async function Blog() {
         return text;
     };
 
-    // Fetch blogs data from the API using axios
-    let blogs = [];
-    let errorMessage = "";
-
-    try {
-        // const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/getblogs`);
-        // blogs = response.data;
-        const response = await fetch("http://localhost:3000/api/getblogs");
-
-        if (!response.ok) {
-            console.log("There is an error fetching data", response.status);
-            return;
-        }
-        // console.log('API URL:', process.env.NEXT_PUBLIC_API_URL);
-        
-        const data = await response.json();
-        console.log(data)
-        
-        if (!data) {
-            console.log("No data available");
-        } else {
-            console.log("Fetched data:", data);
-        }
-        
-    } catch (error) {
-        console.error("Error fetching blogs:", error);
-        errorMessage = "Failed to load blogs. Please try again later.";
-    }
-
     return (
         <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-black text-white p-4 pt-10 h-fit">
-            {errorMessage ? (
-                <div className="col-span-full text-center text-red-500">{errorMessage}</div>
+            {blogs.length === 0 ? (
+                <div className="col-span-full text-center text-red-500">No blogs found or failed to load blogs.</div>
             ) : (
                 blogs.map((blog: any) => (
                     <CardContainer className="inter-var bg-[#18191B] rounded-md" key={blog._id}>
