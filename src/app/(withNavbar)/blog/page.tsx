@@ -21,15 +21,16 @@ export default async function Blog() {
     try {
         // const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/getblogs`);
         // blogs = response.data;
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getblogs`);
+        const response = await fetch("http://localhost:3000/api/getblogs");
 
         if (!response.ok) {
             console.log("There is an error fetching data", response.status);
             return;
         }
-        console.log('API URL:', process.env.NEXT_PUBLIC_API_URL);
+        // console.log('API URL:', process.env.NEXT_PUBLIC_API_URL);
         
         const data = await response.json();
+        console.log(data)
         
         if (!data) {
             console.log("No data available");

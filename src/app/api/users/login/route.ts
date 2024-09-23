@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     const token = jwt.sign(tokenData, process.env.SECRET_KEY!, {
       expiresIn: "1h",
     });
-
+console.log(token)
     // Create response and set the JWT token in an HTTP-only cookie
     const response = NextResponse.json(
       { message: "Logged in successfully." },
@@ -54,7 +54,6 @@ export async function POST(req: NextRequest) {
     );
     response.cookies.set("token", token, {
       httpOnly: true, // Prevent client-side access to the token
-      secure: process.env.NODE_ENV === "production", // Ensure it's only sent over HTTPS in production
       maxAge: 3600, // Set the expiry time for 1 hour
     });
 
